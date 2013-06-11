@@ -109,12 +109,20 @@ NSString * const QPickerTableViewCellIdentifier = @"QPickerTableViewCell";
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    if (self.pickerElement.onValueChanged != nil) {
-        self.pickerElement.onValueChanged(self.pickerElement);
-    }
+
 
     self.pickerElement.value = [self getPickerViewValue];
     [self prepareForElement:_entryElement inTableView:_quickformTableView];
+    
+    NSLog(@"VALUE:::: %@", self.pickerElement.value);
+    
+    
+    if (self.pickerElement.onValueChanged != nil) {
+        self.pickerElement.onValueChanged(self.pickerElement);
+    }
+    
+    
+    
 }
 
 #pragma mark - Getting/setting value from UIPickerView
@@ -134,6 +142,7 @@ NSString * const QPickerTableViewCellIdentifier = @"QPickerTableViewCell";
     }
 
     NSLog(@"AA%@", [self.pickerElement.valueParser objectFromComponentsValues:componentsValues]);
+
     return [self.pickerElement.valueParser objectFromComponentsValues:componentsValues];
 }
 

@@ -49,6 +49,7 @@
         self.imageValue = anImage;
         self.imageMaxLength = FLT_MAX;
         _source = UIImagePickerControllerSourceTypePhotoLibrary;
+        
     }
     return self;
 }
@@ -136,6 +137,10 @@
 
     self.imageValue = [info valueForKey:UIImagePickerControllerOriginalImage];
     [self reducedImageIfNeeded];
+    
+    if (self.onValueChanged)
+        self.onValueChanged(self);    
+    
 
     [self dismissImagePickerController];
 }
